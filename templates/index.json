@@ -1,10 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": { "type": "hero" },
-    "category-grid": { "type": "category-grid" },
-    "featured-collection": { "type": "featured-collection" },
-    "trust-strip": { "type": "trust-strip" },
-    "newsletter": { "type": "newsletter" }
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "RESTOCKED THIS WEEK",
+        "heading": "Stop doing it the hard way.",
+        "subheading": "Small tools that fix annoying everyday problems — in your makeup bag, your kitchen drawer, and around the house.",
+        "button_label": "Shop the Drawer",
+        "button_link": "",
+        "link_label": "See today's top hack",
+        "link_link": ""
+      }
+    },
+    "category-grid": {
+      "type": "category-grid",
+      "blocks": {
+        "category_x6qLmB": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "emoji": "",
+            "title": "Kitchen Fixes",
+            "subtitle": "Kitchen hacks for easier cooking and saving space and time."
+          }
+        },
+        "category_HG8T9q": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "emoji": "🏠",
+            "title": "Home Fixes",
+            "subtitle": "Quick home hacks for drawers corners and more....."
+          }
+        },
+        "category_rbxDFT": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "emoji": "💄",
+            "title": "Makeup Fixes",
+            "subtitle": "Storage, brushes & tools that save your routine 5 minutes a day."
+          }
+        }
+      },
+      "block_order": [
+        "category_x6qLmB",
+        "category_HG8T9q",
+        "category_rbxDFT"
+      ],
+      "settings": {}
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Today's fixes",
+        "subheading": "Every product here solves one annoying problem. That's the whole rule.",
+        "collection": "",
+        "products_to_show": 6
+      }
+    },
+    "trust-strip": {
+      "type": "trust-strip",
+      "blocks": {
+        "item_tX7x4F": {
+          "type": "item",
+          "settings": {
+            "emoji": "🚚",
+            "title": "Fast dispatch",
+            "subtitle": "Orders ship within 24–48 hrs"
+          }
+        }
+      },
+      "block_order": [
+        "item_tX7x4F"
+      ],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Get one hack a week.",
+        "subheading": "No spam — just the single best find, straight to your inbox."
+      }
+    }
   },
-  "order": ["hero", "category-grid", "featured-collection", "trust-strip", "newsletter"]
+  "order": [
+    "hero",
+    "category-grid",
+    "featured-collection",
+    "trust-strip",
+    "newsletter"
+  ]
 }
