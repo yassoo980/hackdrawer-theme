@@ -1,0 +1,18 @@
+<div class="section-head">
+  <div>
+    <h2 class="display">Search</h2>
+    <p>{{ search.results_count }} results for "{{ search.terms }}"</p>
+  </div>
+</div>
+
+<section class="products">
+  {% for item in search.results %}
+    {% if item.object_type == 'product' %}
+      {% render 'product-card', product: item %}
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

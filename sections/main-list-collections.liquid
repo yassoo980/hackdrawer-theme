@@ -1,0 +1,18 @@
+<div class="section-head">
+  <div><h2 class="display">All categories</h2></div>
+</div>
+
+<section class="categories" style="grid-template-columns:repeat(3,1fr);">
+  {% for collection in collections %}
+    <a href="{{ collection.url }}" class="cat-card">
+      <div>
+        <div class="cat-label">{{ collection.title }}</div>
+      </div>
+      <div class="cat-count mono">{{ collection.products_count }} products &rarr;</div>
+    </a>
+  {% endfor %}
+</section>
+
+{% schema %}
+{ "name": "List collections", "settings": [] }
+{% endschema %}

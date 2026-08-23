@@ -1,0 +1,29 @@
+<section class="newsletter">
+  <h3 class="display">{{ section.settings.heading }}</h3>
+  <p>{{ section.settings.subheading }}</p>
+
+  {% form 'customer', id: 'ContactFooter' %}
+    {% if form.posted_successfully? %}
+      <p>Thanks — you're on the list.</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="nl-form">
+        <input type="email" name="contact[email]" placeholder="you@email.com" required>
+        <button type="submit">Join</button>
+      </div>
+    {% endif %}
+  {% endform %}
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get one hack a week." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "No spam — just the single best find, straight to your inbox." }
+  ],
+  "presets": [
+    { "name": "Newsletter" }
+  ]
+}
+{% endschema %}

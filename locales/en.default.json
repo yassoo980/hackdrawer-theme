@@ -1,0 +1,12 @@
+{
+  "general": {
+    "search": {
+      "search": "Search"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart"
+    }
+  }
+}

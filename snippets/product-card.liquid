@@ -1,0 +1,38 @@
+{% comment %}
+  Renders one product card.
+  Usage: {% render 'product-card', product: product %}
+  Optional: set a metafield custom.fix_line ("Problem: ... Fix: ...") on the product for the callout text.
+{% endcomment %}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-media">
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.featured_image.alt }}
+    {% else %}
+      <span>🛠️</span>
+    {% endif %}
+    {% if product.metafields.custom.badge != blank %}
+      <span class="badge">{{ product.metafields.custom.badge }}</span>
+    {% elsif product.compare_at_price > product.price %}
+      <span class="badge">Sale</span>
+    {% endif %}
+  </a>
+  <div class="product-body">
+    {% if product.metafields.custom.fix_line != blank %}
+      <div class="fix-line">{{ product.metafields.custom.fix_line }}</div>
+    {% endif %}
+    <a href="{{ product.url }}" class="product-name">{{ product.title }}</a>
+    <div class="product-footer">
+      <div class="price-row">
+        <span class="price mono">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="price-old mono">{{ product.compare_at_price | money_without_currency }}</span>
+        {% endif %}
+      </div>
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="add-btn" aria-label="Add {{ product.title }} to cart">+</button>
+      {% endform %}
+    </div>
+  </div>
+</div>

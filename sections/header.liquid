@@ -1,0 +1,30 @@
+<header class="site-header">
+  <a href="{{ routes.root_url }}" class="logo">
+    <div class="logo-mark"></div>
+    <div class="logo-text display">{{ section.settings.logo_text_1 | default: 'HACK' }}<span>{{ section.settings.logo_text_2 | default: 'DRAWER' }}</span></div>
+  </a>
+
+  <nav>
+    {% for link in section.settings.menu.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
+
+  <div class="header-icons">
+    <span class="mono">{{ localization.country.iso_code }} / {{ cart.currency.iso_code }}</span>
+    <a href="{{ routes.cart_url }}" class="cart-pill">
+      Cart <span class="count">{{ cart.item_count }}</span>
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "logo_text_1", "label": "Logo text (part 1)", "default": "HACK" },
+    { "type": "text", "id": "logo_text_2", "label": "Logo text (part 2, accent color)", "default": "DRAWER" },
+    { "type": "link_list", "id": "menu", "label": "Navigation menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

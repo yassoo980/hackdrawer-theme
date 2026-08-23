@@ -1,0 +1,44 @@
+<section class="categories">
+  {% for block in section.blocks %}
+    {% if block.type == 'category' %}
+      {% assign coll = collections[block.settings.collection] %}
+      <a href="{{ coll.url | default: '#' }}" class="cat-card" {{ block.shopify_attributes }}>
+        <span class="icon-big">{{ block.settings.emoji }}</span>
+        <div>
+          <div class="cat-label">{{ block.settings.title }}</div>
+          <div class="cat-sub">{{ block.settings.subtitle }}</div>
+        </div>
+        <div class="cat-count mono">{{ coll.products_count | default: 0 }} hacks &rarr;</div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Category grid",
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "emoji", "label": "Icon (emoji)", "default": "💄" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Makeup Fixes" },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Storage, brushes & tools that save your routine 5 minutes a day." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Category grid",
+      "blocks": [
+        { "type": "category", "settings": { "emoji": "💄", "title": "Makeup Fixes", "subtitle": "Storage, brushes & tools that save your routine 5 minutes a day." } },
+        { "type": "category", "settings": { "emoji": "🍳", "title": "Kitchen Fixes", "subtitle": "Gadgets that replace three drawer tools with one good one." } },
+        { "type": "category", "settings": { "emoji": "🏠", "title": "Home Fixes", "subtitle": "Small fixes for cables, closets, and clutter you've stopped noticing." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

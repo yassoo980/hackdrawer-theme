@@ -1,0 +1,39 @@
+<section style="padding:60px 5%;">
+  <h1 class="display" style="font-size:32px; margin-bottom:30px;">Your cart</h1>
+
+  {% if cart.item_count == 0 %}
+    <p style="color:var(--ink-soft);">Your cart is empty. <a href="{{ routes.all_products_collection_url }}" style="color:var(--blue); font-weight:600;">Keep shopping &rarr;</a></p>
+  {% else %}
+    {% form 'cart' %}
+      <table style="width:100%; border-collapse:collapse; margin-bottom:30px;">
+        {% for item in cart.items %}
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:16px 0;">
+              <a href="{{ item.url }}" style="font-weight:600;">{{ item.product.title }}</a>
+              {% if item.variant.title != 'Default Title' %}
+                <div class="mono" style="font-size:12px; color:var(--ink-soft);">{{ item.variant.title }}</div>
+              {% endif %}
+            </td>
+            <td style="padding:16px 0;">
+              <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0" style="width:60px; padding:6px; border:1px solid var(--line); border-radius:4px;">
+            </td>
+            <td class="mono" style="padding:16px 0; text-align:right;">{{ item.final_line_price | money }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      <div style="display:flex; justify-content:flex-end; gap:24px; align-items:center;">
+        <span class="mono" style="font-size:16px;">Subtotal: {{ cart.total_price | money }}</span>
+        <button type="submit" name="update" class="btn-ghost">Update cart</button>
+        <button type="submit" name="checkout" class="btn-primary">Checkout &rarr;</button>
+      </div>
+    {% endform %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}

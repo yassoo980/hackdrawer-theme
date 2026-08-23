@@ -1,0 +1,23 @@
+<div class="section-head">
+  <div><h2 class="display">{{ blog.title }}</h2></div>
+</div>
+
+<section class="products">
+  {% for article in blog.articles %}
+    <div class="product-card">
+      <a href="{{ article.url }}" class="product-media">
+        {% if article.image %}
+          {{ article.image | image_url: width: 400 | image_tag }}
+        {% else %}<span>📝</span>{% endif %}
+      </a>
+      <div class="product-body">
+        <a href="{{ article.url }}" class="product-name">{{ article.title }}</a>
+        <div class="fix-line">{{ article.excerpt_or_content | strip_html | truncate: 90 }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

@@ -1,0 +1,40 @@
+<section class="trust">
+  {% for block in section.blocks %}
+    <div class="trust-item" {{ block.shopify_attributes }}>
+      <span class="t-icon">{{ block.settings.emoji }}</span>
+      <div>
+        <div class="t-title">{{ block.settings.title }}</div>
+        <div class="t-sub">{{ block.settings.subtitle }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust item",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Icon (emoji)", "default": "🚚" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Fast dispatch" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Orders ship within 24–48 hrs" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "emoji": "🚚", "title": "Fast dispatch", "subtitle": "Orders ship within 24–48 hrs" } },
+        { "type": "item", "settings": { "emoji": "↩️", "title": "14-day returns", "subtitle": "Didn't fix it? Send it back" } },
+        { "type": "item", "settings": { "emoji": "💬", "title": "Real support", "subtitle": "WhatsApp us, no bots" } },
+        { "type": "item", "settings": { "emoji": "🔒", "title": "Secure checkout", "subtitle": "Cards, InstaPay, COD" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

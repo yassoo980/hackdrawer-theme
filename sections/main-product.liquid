@@ -1,0 +1,51 @@
+<section class="product-page" style="padding:60px 5%; display:grid; grid-template-columns:1fr 1fr; gap:50px;">
+  <div>
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 800 | image_tag: alt: product.featured_image.alt, style: 'width:100%; border-radius:10px;' }}
+    {% endif %}
+  </div>
+
+  <div>
+    <h1 class="display" style="font-size:32px; margin-bottom:10px;">{{ product.title }}</h1>
+    <div class="price mono" style="font-size:20px; margin-bottom:20px;">
+      {{ product.price | money }}
+      {% if product.compare_at_price > product.price %}
+        <span class="price-old mono">{{ product.compare_at_price | money_without_currency }}</span>
+      {% endif %}
+    </div>
+
+    {% if product.metafields.custom.fix_line != blank %}
+      <div class="fix-line" style="font-size:14px; margin-bottom:20px;">{{ product.metafields.custom.fix_line }}</div>
+    {% endif %}
+
+    <div style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:30px;">
+      {{ product.description }}
+    </div>
+
+    {% form 'product', product %}
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <div style="margin-bottom:14px;">
+            <label class="mono" style="font-size:12px; display:block; margin-bottom:6px;">{{ option.name }}</label>
+            <select name="options[{{ option.name | escape }}]">
+              {% for value in option.values %}
+                <option value="{{ value | escape }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endfor %}
+      {% endunless %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn-primary" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": []
+}
+{% endschema %}

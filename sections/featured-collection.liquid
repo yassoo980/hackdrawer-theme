@@ -1,0 +1,36 @@
+<div class="section-head">
+  <div>
+    <h2 class="display">{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.subheading }}</p>
+  </div>
+  {% assign coll = collections[section.settings.collection] %}
+  {% if coll %}
+    <a href="{{ coll.url }}" class="see-all">View all &rarr;</a>
+  {% endif %}
+</div>
+
+<section class="products">
+  {% if coll %}
+    {% assign products_to_show = coll.products | slice: 0, section.settings.products_to_show %}
+    {% for product in products_to_show %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% else %}
+    <p style="padding:0 5% 40px; color:var(--ink-soft);">Select a collection in the theme editor to show products here.</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Today's fixes" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Every product here solves one annoying problem. That's the whole rule." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 3, "max": 12, "step": 1, "default": 6 }
+  ],
+  "presets": [
+    { "name": "Featured collection" }
+  ]
+}
+{% endschema %}
